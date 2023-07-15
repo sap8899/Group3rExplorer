@@ -130,7 +130,7 @@ def parse_gpo(gpo):
     return gpo
 
         
-
+print("Welcome to Group3rExplorer!\n")
 grouper_log = input("Enter log path: ")
 output_html = input("Enter output path: ")
 
@@ -199,3 +199,4 @@ fig.update_traces(root_color="lightgrey")
 fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
 fig.update_layout(font_size=20)
 fig.write_html(output_html)
+print(f"\nYour Explorer is ready! at {output_html}")
