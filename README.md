@@ -1,5 +1,5 @@
 # Group3rExplorer
-Fun GUI for Group3r's output log
+Fun GUI for Group3rs output log
 
 Input:
 1. Group3r log path
