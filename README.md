@@ -3,11 +3,13 @@ Fun GUI for Group3rs output log
 
 Input:
 1. Group3r log path
-2. output path
+2. output path (without extension)
 
-![image](https://github.com/sap8899/Group3rExplorer/assets/88736901/3087ad24-7db8-4d6c-9536-4cf5a1acada8)
+![image](https://github.com/sap8899/Group3rExplorer/assets/88736901/0cc6fa2b-942c-41c2-b3f8-85d31f58371b)
 
 
+If you have more then 50 settings configured, The tool will split your HTML files into several files so that the result is readable and easy to use:
+![image](https://github.com/sap8899/Group3rExplorer/assets/88736901/2ab3bb78-4e67-48df-b7a3-848b15220b63)
 
 An example available in "Examples"
 Hirarchy:
