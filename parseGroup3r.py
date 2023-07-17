@@ -144,14 +144,15 @@ gpo_list = []
 
 gpo_flag = 0
 gpo_string = ''
-for line in Lines:
-    if "[Finish]" in line:
+for i in range(0,len(Lines)):
+    line = Lines[i]
+    if "[Info] Finished at " in line:
         break
-    if "| GPO             |" in line and gpo_flag == 0:
+    if "| *GPO*           |" in line and gpo_flag == 0:
         gpo_flag = 1
-    if "[GPO]" not in line and gpo_flag ==1:
+    if "| *GPO*           |" not in Lines[i + 1] and gpo_flag ==1:
         gpo_string = gpo_string + line
-    if "[GPO]" in line and gpo_flag == 1:
+    if "| *GPO*           |" in Lines[i + 1] and gpo_flag == 1:
         gpo_object = parse_gpo(gpo_string)
         gpo_list.append(gpo_object)
         gpo_flag = 0
@@ -189,14 +190,27 @@ print(f"Data has been successfully parsed and saved to {output_file}.")
 
 
 file = pandas.read_csv("parsed_log.csv", encoding = "utf-8")
-a = file.to_html().replace("\\n","<br>")
-b = pandas.read_html(a)[0]
-b = b.drop('Unnamed: 0', axis=1)
-b = b.fillna(value="None")
-fig = px.treemap(b, path=[px.Constant("Policies"),'GPO','setting_type', 'policy_type', 'content', 'finding'])
-fig.data[0].textinfo = 'label'
-fig.update_traces(root_color="lightgrey")
-fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
-fig.update_layout(font_size=20)
-fig.write_html(output_html)
+count_gpo = file["GPO"].count()
+count2 = count_gpo
+curr = 0
+new = 50
+while count_gpo > 0:
+    count_gpo = count_gpo - 50
+    output = output_html + str(curr) + ".html"
+    new_df = file[curr:new]
+    a = new_df.to_html().replace("\\n","<br>")
+    b = pandas.read_html(a)[0]
+    b = b.drop('Unnamed: 0', axis=1)
+    b = b.fillna(value="None")
+    fig = px.treemap(b, path=[px.Constant("Policies"),'GPO','setting_type', 'policy_type', 'content', 'finding'])
+    fig.data[0].textinfo = 'label'
+    fig.update_traces(root_color="lightgrey")
+    fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
+    fig.update_layout(font_size=20)
+    fig.write_html(output)
+    curr = curr + 50
+    new = new + 50
+    if new > count2:
+        new = count2
+
 print(f"\nYour Explorer is ready! at {output_html}")
