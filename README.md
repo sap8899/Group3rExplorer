@@ -19,4 +19,12 @@ Hirarchy:
 GPO -> Policy Type(User/Computer) -> Policy Name (Scripts/User rights..) -> Settings -> Findings
 ![image](https://github.com/sap8899/Group3rExplorer/assets/88736901/1023b411-1e21-4857-892c-22ac87ad22ba)
 
+A nice addition to group3rExplorer - now you can view your blog as a table! You can perform filters, arrange in a certain order and more.
+
+To test this use parseGroup3rWithTable.py
+
+(requires version 1.4 of pandas pip install pandas==1.4.0)
+
+![image](https://github.com/sap8899/Group3rExplorer/assets/88736901/ed5fa9ff-be60-41d6-9714-f9e1fe69953d)
+
 Have Fun :)
